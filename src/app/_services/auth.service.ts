@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http,Headers, RequestOptions,Response } from '@angular/http';
-import  'rxjs/operator';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class AuthService {
 login(model:any){
   const header =new Headers({'content-type':'application/json'});
   const options =new RequestOptions({headers:header})
-  return this.http.post(this.baseUrl + 'login',model, options).map((response:Response)=>{
+  return this.http.post(this.baseUrl + 'login',model, options).subscribe((response:Response)=>{
  const user=response.json();
  if(user){
    localStorage.setItem('token',user.tokenString);
